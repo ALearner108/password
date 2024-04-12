@@ -1,0 +1,141 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
+body{
+  background-color: color-mix(in hsl shorter hue, rgb(124, 124, 234) 40%, rgb(241, 170, 241) 60%);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+ 
+}
+
+.PasswordContainer{
+  
+  width: 300px;
+ 
+  background-color: rgb(159, 175, 189);
+  align-items: center;
+  box-shadow: inset;
+  padding: 20px;
+}
+
+h2{
+  text-align: center;
+  
+}
+
+.passwordBoxIn{
+ display: flex;
+ padding-top: 10px;
+}
+
+.passwordBoxIn input{
+  flex-basis: 80%;
+  padding-left: 5px;
+  height: 20px;
+}
+
+.passwordBoxIn button{
+  flex-basis: 20%;
+}
+
+.passLength{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 15px;
+}
+.passLength label{
+  margin-left: 0px;
+  align-items: center;
+}
+
+
+
+.passLength input{
+  width: 50px;
+  height: 20px;
+  text-align: center;
+}
+
+.upperCase{
+  align-items: center;
+  display: flex;
+  padding-top: 15px;
+}
+
+
+.upperCase label{
+  flex-basis: 80%;
+}
+
+.upperCase input{
+  flex-basis: 20%;
+  width: 10px;
+}
+
+.lowerCase{
+  align-items: center;
+  display: flex;
+  padding-top: 15px;
+}
+
+
+.lowerCase label{
+  flex-basis: 80%;
+}
+
+.lowerCase input{
+  flex-basis: 20%;
+  width: 10px;
+}
+
+.Numbers {
+  align-items: center;
+  display: flex;
+  padding-top: 15px;
+  
+}
+
+
+.Numbers label{
+  flex-basis: 80%;
+}
+
+ .Numbers input{
+  flex-basis: 20%;
+  width: 10px;
+}
+
+.symbols {
+  align-items: center;
+  display: flex;
+  padding-top: 15px;
+}
+
+
+.symbols label{
+  flex-basis: 80%;
+}
+
+.symbols input{
+  flex-basis: 20%;
+  width: 10px;
+}
+
+
+.button {
+  
+  padding-top: 15px;
+  width: 100%;
+}
+
+.button button{
+  width: 100%;
+  height: 30px;
+  cursor: pointer ;
+  
+}

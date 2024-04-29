@@ -1,47 +1,93 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios'; // If you're using Axios
+import React, { useState } from 'react';
+import axios from 'axios';
+import { FormGroup, Label, Input,FormFeedback } from 'reactstrap';
 
-function MyComponent() {
-  const [data, setData] = useState(null);
+function Test() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [successMessage, setSuccessMessage] = useState('');
 
-  useEffect(() => {
-    // Function to fetch data from the API
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('https://api.example.com/data');
-        setData(response.data); // Set the data in state
-        setLoading(false); // Set loading to false
-      } catch (error) {
-        setError(error); // Set error state if request fails
-        setLoading(false); // Set loading to false
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    setSuccessMessage('');
+
+    try {
+      const response = await axios.post('https://aligned.corvo.com.np/api/Authentication/register', {
+        username,
+        email,
+        password,
+        
+      });
+
+      if (!response.data.success) {
+        throw new Error(response.data.message || 'Signup failed');
       }
-    };
 
-    fetchData(); // Call the function to fetch data
-  }, []);
-
-  if (loading) {
-    return <div>Loading...</div>; // Render a loading indicator while data is being fetched
-  }
-
-  if (error) {
-    return <div>Error: {error.message}</div>; // Render an error message if request fails
-  }
+      // Signup successful
+      setSuccessMessage('Signup successful. You can now login.');
+      setUsername('');
+      setPassword('');
+      setEmail('');
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div>
-      {/* Render the fetched data */}
-      {data && (
-        <ul>
-          {data.map(item => (
-            <li key={item.id}>{item.name}</li>
-          ))}
-        </ul>
-      )}
+      <h2>Signup</h2>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
+      <form onSubmit={handleSubmit}>
+        
+          <FormGroup>
+          <label htmlFor="username">Username:</label>
+          <Input
+            type="text"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            disabled={loading}
+          />
+        </FormGroup>
+        <div>
+          <FormGroup>
+          <Label htmlFor="password">Password:</Label>
+          <Input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            disabled={loading}
+          />
+          </FormGroup>
+        </div>
+        
+        <div>
+          <FormGroup>
+          <Label htmlFor="email">Email:</Label>
+          <Input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            disabled={loading}
+          />
+          </FormGroup>
+        </div>
+        <button type="submit" disabled={loading}>
+          {loading ? 'Signing up...' : 'Signup'}
+        </button>
+      </form>
     </div>
   );
 }
 
-export default MyComponent;
+export default Test;

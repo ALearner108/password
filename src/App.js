@@ -5,6 +5,7 @@ import './App.css';
 import { LC, NC, SC, UC } from './PassChar';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Test from './components/Api-test/Test';
 
 
 
@@ -76,6 +77,7 @@ function App() {
      
     </div>
     <ToastContainer/>
+    <Test/>
     </>
   );
 }

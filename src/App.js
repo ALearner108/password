@@ -7,6 +7,7 @@ import { LC, NC, SC, UC } from './PassChar';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Test from './components/Api-test/Test';
+import Fetch from './components/Fetch';
 
 
 
@@ -79,6 +80,7 @@ function App() {
     </div>
     <ToastContainer/>
     <Test/>
+    <Fetch/>
     </>
   );
 }

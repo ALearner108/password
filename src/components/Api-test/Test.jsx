@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { FormGroup, Label, Input,FormFeedback } from 'reactstrap';
+import { FormGroup, Label, Input,FormFeedback, Form, Button } from 'reactstrap';
+
 
 function Test() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [image, setImage] = useState('');
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -39,13 +41,20 @@ function Test() {
       setLoading(false);
     }
   };
+  const clear=()=>{
+    setUsername('')
+    setEmail('')
+    setPassword('')
+
+  }
 
   return (
     <div>
+      
       <h2>Signup</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         
           <FormGroup>
           <label htmlFor="username">Username:</label>
@@ -81,11 +90,20 @@ function Test() {
             disabled={loading}
           />
           </FormGroup>
+          
         </div>
-        <button type="submit" disabled={loading}>
+        <FormGroup>
+          <Label htmlFor='image'>Image</Label>
+          <Input
+          type='file'
+          id='image'
+          value={image}
+          onChange={(e)=>setImage(e.target.value)}/>
+        </FormGroup>
+        <Button type="submit" disabled={loading} onClick={clear}>
           {loading ? 'Signing up...' : 'Signup'}
-        </button>
-      </form>
+        </Button>
+      </Form>
     </div>
   );
 }
